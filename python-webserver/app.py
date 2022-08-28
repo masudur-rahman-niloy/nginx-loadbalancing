@@ -29,7 +29,7 @@ def check_connection():
 def index():
     return "Hello, this is index"
 
-@app.route("/conn")
+@app.route("/connection")
 def connection():
     res = check_connection()
     return res
