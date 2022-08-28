@@ -10,8 +10,9 @@ MYSQL_PASS = os.getenv('MYSQL_PASS')
 MYSQL_DBN = os.getenv('MYSQL_DBN')
 MYSQL_PORT = os.getenv('MYSQL_PORT', '3306')
 
-def player_list():
-    connection = pymysql.connect(
+def check_connection():
+    try:
+        connection = pymysql.connect(
                     host=MYSQL_HOST,
                     user=MYSQL_USER,
                     password=MYSQL_PASS,
@@ -19,23 +20,19 @@ def player_list():
                     port=int(MYSQL_PORT),
                     cursorclass=pymysql.cursors.DictCursor
             )
-    try:
-        with connection.cursor() as cursor:
-            query_str = "SELECT * FROM players"
-            cursor.execute(query_str)
-            result = cursor.fetchall()
-    finally:
-        connection.close()
-    return result
+        return f"Connection successful"
+    except Exception as e:
+        return f"Connection failure: {str(e)}"
+    
 
 @app.route("/")
 def index():
     return "Hello, this is index"
 
-@app.route("/players")
-def players():
-    pl = player_list()
-    return jsonify(pl)
+@app.route("/conn")
+def connection():
+    res = check_connection()
+    return res
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port="3000")
