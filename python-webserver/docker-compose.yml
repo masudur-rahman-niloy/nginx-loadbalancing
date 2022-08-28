@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+
+  python-webserver:
+    build: .
+    container_name: python-webserver
+    ports:
+      - "3000:3000"
+    
+    environment:
+      - MYSQL_HOST=db
+      - MYSQL_USER=root
+      - MYSQL_PASS=my-secret-pw
+      - MYSQL_DBN=new_database
+      - MYSQL_PORT=3306
+      
