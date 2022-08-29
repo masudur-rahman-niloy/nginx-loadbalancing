@@ -120,7 +120,7 @@ We'll need to create firewall rules in order to allow the packets to pass. We'll
 
 3. Allow `tcp` trafic on port `80` on `vpc-nginx-lb` from all ip range (0.0.0.0/0). 
 
-4. Allow `tcp` trafic on port `80` on `vpc-webapp` from `vpc-nginx-lb` (10.0.0.0/16) ip range.
+4. Allow `tcp` trafic on port `3000` on `vpc-webapp` from `vpc-nginx-lb` (10.0.0.0/16) ip range.
 
 
 To create #1 Go to `VPC network > Firewall` and click `CREATE FIREWALL RULE`.
