@@ -7,7 +7,8 @@ services:
     container_name: mysql_database
     ports:
       - "3306:3306"
-    
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
       - MYSQL_ROOT_PASSWORD=my-secret-pw
-      - MYSQL_DATABASE=new_database
+      - MYSQL_DATABASE=world_x
